@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ship.web.usr.UserMapper">
+  <!--   <resultMap type="com.ship.web.domains.UserDTO" id="usermap">
+        <id column="UID" property="uid"/>
+        <result column="USER_ID" property="uid"/>
+        <result column="USER_NAME" property="uname"/>
+        <result column="USER_PW" property="upw"/>
+        <result column="USER_LOC" property="loc"/>
+        <result column="USER_TEL" property="tel"/>
+        <result column="USER_POINT" property="upoint"/>
+        <result column="AGE" property="age"/>
+        <result column="GENDER" property="gender"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SCORE" property="score"/>
+        <result column="MVP" property="mvp"/>
+        <result column="WIN" property="win"/>
+        <result column="HITMAP" property="hitmap"/>
+        <result column="KM" property="km"/>
+        <result column="HEART" property="heart"/>
+        <result column="BOOKMARK" property="lolname"/>
+        <result column="LOL_BLACK" property="lolname"/>
+        <result column="FUT_BLACK" property="lolname"/>
+    </resultMap> -->
+    <select id="selectUserByIdPw" resultType="User">
+        select USER_ID as uid, USER_NAME as uname, USER_PW as upw, AGE as age 
+        from USER
+        where USER_ID like #{uid}
+    </select>
+    <insert id="insertUser" parameterType="User">
+        insert into USER (USER_ID, USER_PW, USER_NAME, AGE)
+        VALUES (#{uid}, #{upw}, #{uname}, #{age})
+    </insert>
+    <select id="existId" parameterType="String" resultType="Integer">
+        select count(*) from USER      
+        where USER_ID like #{uid}
+    </select>
+    
+</mapper>

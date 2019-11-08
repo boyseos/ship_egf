@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ship.web.adm.AdminMapper">
+    <select id="searchAdminByIdPw" resultType="Admin">
+        select * from Admin
+        where eid = #{eid} and epw = #{epw}
+    </select>
+    <select id="selectAdmin" resultType="Admin" parameterType="hashMap">
+        select * from Admin
+        where ${uid} = #{uid}  <!-- $는 ''가 없구 #는 ''가 있다 -->
+        <trim prefix="where" prefixOverrides="AND /OR">
+	        <if test="epw !=null">
+	        	and ${epw} = #{epw}
+	        </if>
+         </trim>
+    </select>
+</mapper>
